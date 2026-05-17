@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Валютный конвертер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-symbol">₿</span>
+        <span class="logo-text">КУРС</span>
+      </div>
+      <div class="meta-time" id="updateTime">обновление...</div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Конвертер -->
+    <section class="converter-card">
+      <div class="converter-row">
+        <div class="input-group">
+          <label class="input-label">Сумма</label>
+          <div class="input-wrap">
+            <input type="number" id="amountInput" value="100" min="0" step="any" class="amount-input" />
+          </div>
+        </div>
+
+        <div class="currency-selects">
+          <div class="select-group">
+            <label class="input-label">Из</label>
+            <select id="fromCurrency" class="currency-select"></select>
+          </div>
+          <button class="swap-btn" id="swapBtn" title="Поменять местами">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </button>
+          <div class="select-group">
+            <label class="input-label">В</label>
+            <select id="toCurrency" class="currency-select"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-area">
+        <div class="result-number" id="resultDisplay">—</div>
+        <div class="result-rate" id="rateDisplay"></div>
+      </div>
+
+      <div class="quick-amounts">
+        <span class="quick-label">Быстро:</span>
+        <button class="quick-btn" data-amount="100">100</button>
+        <button class="quick-btn" data-amount="500">500</button>
+        <button class="quick-btn" data-amount="1000">1 000</button>
+        <button class="quick-btn" data-amount="10000">10 000</button>
+        <button class="quick-btn" data-amount="50000">50 000</button>
+      </div>
+    </section>
+
+    <!-- Статус / ошибка -->
+    <div class="status-bar" id="statusBar">
+      <span id="statusText">Загрузка курсов...</span>
+    </div>
+
+    <!-- Сетка популярных курсов -->
+    <section class="rates-section">
+      <h2 class="section-title">Популярные пары</h2>
+      <div class="rates-grid" id="ratesGrid"></div>
+    </section>
+
+    <!-- История -->
+    <section class="history-section" id="historySection" style="display:none">
+      <div class="history-header">
+        <h2 class="section-title">История</h2>
+        <button class="clear-btn" id="clearHistory">очистить</button>
+      </div>
+      <ul class="history-list" id="historyList"></ul>
+    </section>
+
+  </main>
+
+  <script src="rates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
